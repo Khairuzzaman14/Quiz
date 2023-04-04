@@ -38,7 +38,7 @@ body {
 #question {
   margin: 15px;
   height: 30px;
-  font-size: 40px;
+  font-size: 30px;
   margin-bottom: 50px;
 }
 
@@ -99,3 +99,22 @@ body {
 .button:hover {
   border-color: goldenrod;
 }
+
+#result {
+  position: relative;
+  bottom: 150%;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 50px;
+  padding: 30px;
+  margin: 10px;
+  color: red;
+}
+
+/* @media only screen and (min-width: 200px) {
+  body {
+    width: 100%;
+  }
+} */
