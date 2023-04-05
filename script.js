@@ -1,220 +1,15 @@
 let currentQuestion = 0;
-
-// Start button
-let startButton = document.getElementById("Start");
-startButton.addEventListener("click", startQuiz);
-function startQuiz() {
-  console.log("Started");
-  questionBox.innerHTML = randomQns[currentQuestion].question;
-  ab1.innerHTML = randomQns[currentQuestion].answers[0];
-  ab2.innerHTML = randomQns[currentQuestion].answers[1];
-  ab3.innerHTML = randomQns[currentQuestion].answers[2];
-  ab4.innerHTML = randomQns[currentQuestion].answers[3];
-
-  let score = 0;
-  updateScore();
-
-  let time = 10;
-  let myInterval = setInterval(updateCountdown, 1000);
-  function updateCountdown() {
-    timerBox.innerHTML = time;
-    time--;
-    if (time < 0) {
-      clearInterval(myInterval);
-      clearTimeout(myInterval);
-      time = 0;
-      ab1.disabled = true;
-      ab2.disabled = true;
-      ab3.disabled = true;
-      ab4.disabled = true;
-    }
-  }
-
-  scoreBox.style.visibility = "visible";
-  timerBox.style.visibility = "visible";
-  nextButton.style.visibility = "visible";
-  questionBox.style.visibility = "visible";
-  document.querySelector("#answers").style.visibility = "visible";
-  startButton.style.visibility = "hidden";
-
-  nextButton.innerHTML = "Skip";
-}
-
-// Next button
-let nextButton = document.getElementById("Next");
-nextButton.addEventListener("click", nextQn);
-function nextQn() {
-  console.log("Next question");
-  currentQuestion++;
-  if (currentQuestion == questions.length) {
-    resultBox.style.visibility = "visible";
-    nextButton.style.visibility = "hidden";
-    scoreBox.style.visibility = "hidden";
-    timerBox.style.visibility = "hidden";
-    questionBox.style.visibility = "hidden";
-    document.querySelector("#answers").style.visibility = "hidden";
-    resultBox.innerHTML = `Your score is ${score} points`;
-    return;
-  }
-  questionBox.innerHTML = randomQns[currentQuestion].question;
-  ab1.innerHTML = randomQns[currentQuestion].answers[0];
-  ab2.innerHTML = randomQns[currentQuestion].answers[1];
-  ab3.innerHTML = randomQns[currentQuestion].answers[2];
-  ab4.innerHTML = randomQns[currentQuestion].answers[3];
-
-  ab1.style.background = 0;
-  ab2.style.background = 0;
-  ab3.style.background = 0;
-  ab4.style.background = 0;
-
-  ab1.disabled = false;
-  ab2.disabled = false;
-  ab3.disabled = false;
-  ab4.disabled = false;
-  // let time = 10;
-  // updateCountdown();
-
-  nextButton.innerHTML = "Skip";
-
-  let time = 10;
-  let myInterval = setInterval(updateCountdown, 1000);
-  function updateCountdown() {
-    timerBox.innerHTML = time;
-    time--;
-    if (time < 0) {
-      clearInterval(myInterval);
-      clearTimeout(myInterval);
-      time = 0;
-      ab1.disabled = true;
-      ab2.disabled = true;
-      ab3.disabled = true;
-      ab4.disabled = true;
-    }
-  }
-}
-
-ab1.addEventListener("click", function (e) {
-  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
-    score++;
-    updateScore();
-    e.target.style.background = "LawnGreen";
-  } else {
-    e.target.style.background = "LightSalmon";
-  }
-
-  isDisabled = false;
-  ab2.disabled = true;
-  ab3.disabled = true;
-  ab4.disabled = true;
-
-  if (ab2.innerHTML == randomQns[currentQuestion].correct) {
-    ab2.style.background = "LawnGreen";
-  }
-  if (ab3.innerHTML == randomQns[currentQuestion].correct) {
-    ab3.style.background = "LawnGreen";
-  }
-  if (ab4.innerHTML == randomQns[currentQuestion].correct) {
-    ab4.style.background = "LawnGreen";
-  }
-
-  nextButton.innerHTML = "Next";
-});
-
-ab2.addEventListener("click", function (e) {
-  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
-    score++;
-    updateScore();
-    e.target.style.background = "LawnGreen";
-  } else {
-    e.target.style.background = "LightSalmon";
-  }
-  isDisabled = false;
-  ab1.disabled = true;
-  ab3.disabled = true;
-  ab4.disabled = true;
-
-  if (ab1.innerHTML == randomQns[currentQuestion].correct) {
-    ab1.style.background = "LawnGreen";
-  }
-  if (ab3.innerHTML == randomQns[currentQuestion].correct) {
-    ab3.style.background = "LawnGreen";
-  }
-  if (ab4.innerHTML == randomQns[currentQuestion].correct) {
-    ab4.style.background = "LawnGreen";
-  }
-
-  nextButton.innerHTML = "Next";
-});
-
-ab3.addEventListener("click", function (e) {
-  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
-    score++;
-    updateScore();
-    e.target.style.background = "LawnGreen";
-  } else {
-    e.target.style.background = "LightSalmon";
-  }
-  isDisabled = false;
-  ab1.disabled = true;
-  ab2.disabled = true;
-  ab4.disabled = true;
-
-  if (ab1.innerHTML == randomQns[currentQuestion].correct) {
-    ab1.style.background = "LawnGreen";
-  }
-  if (ab2.innerHTML == randomQns[currentQuestion].correct) {
-    ab2.style.background = "LawnGreen";
-  }
-  if (ab4.innerHTML == randomQns[currentQuestion].correct) {
-    ab4.style.background = "LawnGreen";
-  }
-
-  nextButton.innerHTML = "Next";
-});
-
-ab4.addEventListener("click", function (e) {
-  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
-    score++;
-    updateScore();
-    e.target.style.background = "LawnGreen";
-  } else {
-    e.target.style.background = "LightSalmon";
-  }
-  isDisabled = false;
-  ab1.disabled = true;
-  ab2.disabled = true;
-  ab3.disabled = true;
-
-  if (ab1.innerHTML == randomQns[currentQuestion].correct) {
-    ab1.style.background = "LawnGreen";
-  }
-  if (ab2.innerHTML == randomQns[currentQuestion].correct) {
-    ab1.style.background = "LawnGreen";
-  }
-  if (ab3.innerHTML == randomQns[currentQuestion].correct) {
-    ab1.style.background = "LawnGreen";
-  }
-
-  nextButton.innerHTML = "Next";
-
-  // function checkCorrect(button, correct)
-
-  // button.innerHTML == correct
-});
-
-// Score
 let score = 0;
-let scoreBox = document.getElementById("score");
-function updateScore() {
-  scoreBox.innerHTML = score + "/30";
-}
-
-// Timer;
 let time = 10;
-let timerBox = document.getElementById("timer");
+let intervalID;
 
-// Questions
+let startButton = document.getElementById("Start");
+let nextButton = document.getElementById("Next");
+let scoreBox = document.getElementById("score");
+let timerBox = document.getElementById("timer");
 let questionBox = document.getElementById("question");
+let resultBox = document.querySelector("#result");
+let answerBox = document.querySelector("#answers");
 
 const questions = [
   {
@@ -235,7 +30,7 @@ const questions = [
   },
   {
     question:
-      "With nine goals, who scored the most goals in a single European Championship tournament?",
+      "Who scored the most goals in a single European Championship tournament?",
     answers: [
       "Michel Platini, Euro 84",
       "Cristiano Ronaldo, Euro 16",
@@ -261,8 +56,7 @@ const questions = [
     correct: "David Beckham",
   },
   {
-    question:
-      "Who is the only player to win the Champions League with three different clubs?",
+    question: "Who won the Champions League with three different clubs?",
     answers: [
       "Clarence Seedorf",
       "Cristiano Ronaldo",
@@ -412,7 +206,7 @@ const questions = [
   {
     question: "How many Premier League titles did Arsene Wenger win?",
     answers: ["5", "4", "3", "2"],
-    correct: "2",
+    correct: "3",
   },
   {
     question:
@@ -434,12 +228,6 @@ const questions = [
 
 let randomQns = questions.sort(() => Math.random() - 0.5);
 
-// Result box
-
-let resultBox = document.querySelector("#result");
-
-// Onload
-
 window.onload = (event) => {
   scoreBox.style.visibility = "hidden";
   resultBox.style.visibility = "hidden";
@@ -448,3 +236,211 @@ window.onload = (event) => {
   questionBox.style.visibility = "hidden";
   document.querySelector("#answers").style.visibility = "hidden";
 };
+
+function updateScore() {
+  scoreBox.innerHTML = score + "/30";
+}
+
+function startQuiz() {
+  console.log("Started");
+  questionBox.innerHTML = randomQns[currentQuestion].question;
+  ab1.innerHTML = randomQns[currentQuestion].answers[0];
+  ab2.innerHTML = randomQns[currentQuestion].answers[1];
+  ab3.innerHTML = randomQns[currentQuestion].answers[2];
+  ab4.innerHTML = randomQns[currentQuestion].answers[3];
+
+  updateScore();
+
+  startCountdown();
+
+  scoreBox.style.visibility = "visible";
+  timerBox.style.visibility = "visible";
+  nextButton.style.visibility = "visible";
+  questionBox.style.visibility = "visible";
+  document.querySelector("#answers").style.visibility = "visible";
+  startButton.style.visibility = "hidden";
+
+  nextButton.innerHTML = "Skip";
+}
+
+function nextQn() {
+  console.log("Next question");
+  currentQuestion++;
+  if (currentQuestion == questions.length) {
+    resultBox.style.visibility = "visible";
+    nextButton.style.visibility = "hidden";
+    scoreBox.style.visibility = "hidden";
+    timerBox.style.visibility = "hidden";
+    questionBox.style.visibility = "hidden";
+    document.querySelector("#answers").style.visibility = "hidden";
+    resultBox.innerHTML = `Your score is ${score} points`;
+    return;
+  }
+  questionBox.innerHTML = randomQns[currentQuestion].question;
+  ab1.innerHTML = randomQns[currentQuestion].answers[0];
+  ab2.innerHTML = randomQns[currentQuestion].answers[1];
+  ab3.innerHTML = randomQns[currentQuestion].answers[2];
+  ab4.innerHTML = randomQns[currentQuestion].answers[3];
+
+  ab1.style.background = 0;
+  ab2.style.background = 0;
+  ab3.style.background = 0;
+  ab4.style.background = 0;
+
+  ab1.disabled = false;
+  ab2.disabled = false;
+  ab3.disabled = false;
+  ab4.disabled = false;
+  // let time = 10;
+  // updateCountdown();
+
+  nextButton.innerHTML = "Skip";
+
+  stopCountdown();
+  resetCountdown();
+}
+
+function startCountdown() {
+  if (!intervalID) {
+    intervalID = setInterval(countdownToZero, 1000);
+  }
+}
+
+function countdownToZero() {
+  if (time === 0) {
+    stopCountdown();
+    ab1.disabled = true;
+    ab2.disabled = true;
+    ab3.disabled = true;
+    ab4.disabled = true;
+  }
+  timerBox.innerHTML = time;
+  time--;
+}
+
+function stopCountdown() {
+  clearInterval(intervalID);
+  intervalID = null;
+}
+
+function resetCountdown() {
+  stopCountdown();
+  time = 10;
+  startCountdown();
+}
+startButton.addEventListener("click", startQuiz);
+
+nextButton.addEventListener("click", nextQn);
+
+ab1.addEventListener("click", function (e) {
+  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
+    score++;
+    updateScore();
+    e.target.style.background = "LawnGreen";
+  } else {
+    e.target.style.background = "LightSalmon";
+  }
+
+  isDisabled = false;
+  ab2.disabled = true;
+  ab3.disabled = true;
+  ab4.disabled = true;
+
+  if (ab2.innerHTML == randomQns[currentQuestion].correct) {
+    ab2.style.background = "LawnGreen";
+  }
+  if (ab3.innerHTML == randomQns[currentQuestion].correct) {
+    ab3.style.background = "LawnGreen";
+  }
+  if (ab4.innerHTML == randomQns[currentQuestion].correct) {
+    ab4.style.background = "LawnGreen";
+  }
+
+  nextButton.innerHTML = "Next";
+
+  stopCountdown();
+});
+
+ab2.addEventListener("click", function (e) {
+  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
+    score++;
+    updateScore();
+    e.target.style.background = "LawnGreen";
+  } else {
+    e.target.style.background = "LightSalmon";
+  }
+  isDisabled = false;
+  ab1.disabled = true;
+  ab3.disabled = true;
+  ab4.disabled = true;
+
+  if (ab1.innerHTML == randomQns[currentQuestion].correct) {
+    ab1.style.background = "LawnGreen";
+  }
+  if (ab3.innerHTML == randomQns[currentQuestion].correct) {
+    ab3.style.background = "LawnGreen";
+  }
+  if (ab4.innerHTML == randomQns[currentQuestion].correct) {
+    ab4.style.background = "LawnGreen";
+  }
+
+  nextButton.innerHTML = "Next";
+
+  stopCountdown();
+});
+
+ab3.addEventListener("click", function (e) {
+  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
+    score++;
+    updateScore();
+    e.target.style.background = "LawnGreen";
+  } else {
+    e.target.style.background = "LightSalmon";
+  }
+  isDisabled = false;
+  ab1.disabled = true;
+  ab2.disabled = true;
+  ab4.disabled = true;
+
+  if (ab1.innerHTML == randomQns[currentQuestion].correct) {
+    ab1.style.background = "LawnGreen";
+  }
+  if (ab2.innerHTML == randomQns[currentQuestion].correct) {
+    ab2.style.background = "LawnGreen";
+  }
+  if (ab4.innerHTML == randomQns[currentQuestion].correct) {
+    ab4.style.background = "LawnGreen";
+  }
+
+  nextButton.innerHTML = "Next";
+
+  stopCountdown();
+});
+
+ab4.addEventListener("click", function (e) {
+  if (e.target.innerHTML == randomQns[currentQuestion].correct) {
+    score++;
+    updateScore();
+    e.target.style.background = "LawnGreen";
+  } else {
+    e.target.style.background = "LightSalmon";
+  }
+  isDisabled = false;
+  ab1.disabled = true;
+  ab2.disabled = true;
+  ab3.disabled = true;
+
+  if (ab1.innerHTML == randomQns[currentQuestion].correct) {
+    ab1.style.background = "LawnGreen";
+  }
+  if (ab2.innerHTML == randomQns[currentQuestion].correct) {
+    ab1.style.background = "LawnGreen";
+  }
+  if (ab3.innerHTML == randomQns[currentQuestion].correct) {
+    ab1.style.background = "LawnGreen";
+  }
+
+  nextButton.innerHTML = "Next";
+
+  stopCountdown();
+});
