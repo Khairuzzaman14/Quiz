@@ -234,7 +234,7 @@ window.onload = (event) => {
   timerBox.style.visibility = "hidden";
   nextButton.style.visibility = "hidden";
   questionBox.style.visibility = "hidden";
-  document.querySelector("#answers").style.visibility = "hidden";
+  answerBox.style.visibility = "hidden";
 };
 
 function updateScore() {
@@ -257,7 +257,7 @@ function startQuiz() {
   timerBox.style.visibility = "visible";
   nextButton.style.visibility = "visible";
   questionBox.style.visibility = "visible";
-  document.querySelector("#answers").style.visibility = "visible";
+  answerBox.style.visibility = "visible";
   startButton.style.visibility = "hidden";
 
   nextButton.innerHTML = "Skip";
@@ -272,7 +272,7 @@ function nextQn() {
     scoreBox.style.visibility = "hidden";
     timerBox.style.visibility = "hidden";
     questionBox.style.visibility = "hidden";
-    document.querySelector("#answers").style.visibility = "hidden";
+    answerBox.style.visibility = "hidden";
     resultBox.innerHTML = `Your score is ${score} points`;
     return;
   }
